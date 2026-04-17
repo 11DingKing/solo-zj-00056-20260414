@@ -5,4 +5,5 @@ type Bookmark struct {
 	UserID string
 	URL    string
 	Title  string
+	Tags   []string
 }

@@ -12,6 +12,16 @@ func RegisterHTTPEndpoints(router *gin.RouterGroup, uc bookmark.UseCase) {
 	{
 		bookmarks.POST("", h.Create)
 		bookmarks.GET("", h.Get)
+		bookmarks.GET("/by-tags", h.GetByTags)
 		bookmarks.DELETE("", h.Delete)
+		bookmarks.PUT("/tags", h.UpdateTags)
+	}
+
+	tags := router.Group("/tags")
+	{
+		tags.GET("", h.GetAllTags)
+		tags.POST("/merge", h.MergeTags)
+		tags.POST("/batch-add", h.BatchAddTags)
+		tags.POST("/batch-remove", h.BatchRemoveTags)
 	}
 }
